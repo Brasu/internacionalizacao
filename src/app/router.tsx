@@ -1,22 +1,70 @@
 import { createBrowserRouter, createHashRouter } from 'react-router';
-import { RouterLayout } from '../shared/navigation-scroll';
 import { documentsAction } from '../features/application-documents';
+import i18n from '../features/i18n';
 import {
-  EditalPage,
-  editalLoader,
+  driHomeLoader,
+  DriHomePage,
+  newStudentLoader,
+  NewStudentPage,
+  studentAction,
+  studentsLoader,
+  StudentsPage,
+} from '../features/pages/admin';
+import {
   editalAction,
-  NewApplicationPage,
-  newApplicationLoader,
+  editalLoader,
+  EditalPage,
   newApplicationAction,
+  newApplicationLoader,
+  NewApplicationPage,
 } from '../features/pages/admissions';
 import {
-  applicationsLoader,
-  applicationReviewLoader,
+  agreementAction,
+  agreementFormLoader,
+  AgreementFormPage,
+  agreementsLoader,
+  AgreementsPage,
+} from '../features/pages/agreements';
+import {
   applicationReviewAction,
-  ApplicationsPage,
+  applicationReviewLoader,
   ApplicationReviewPage,
+  applicationsLoader,
+  ApplicationsPage,
 } from '../features/pages/applications';
-import i18n from '../features/i18n';
+import {
+  ErrorPage,
+  loginAction,
+  loginLoader,
+  LoginPage,
+  logoutAction,
+  notFoundLoader,
+  rootLoader,
+} from '../features/pages/auth';
+import {
+  contactAction,
+  contactDetailLoader,
+  ContactDetailPage,
+  contactLoader,
+  ContactPage,
+} from '../features/pages/contact';
+import { AppLayout, driLayoutLoader, studentLayoutLoader } from '../features/pages/layout';
+import { noticesAction, noticesLoader, NoticesPage } from '../features/pages/notices';
+import { reportsLoader, ReportsPage } from '../features/pages/reports';
+import {
+  ApplicationPage,
+  contextLoader,
+  EligibilityPage,
+  homeLoader,
+  HomePage,
+  SupportPage,
+  universitiesLoader,
+  UniversitiesPage,
+  universityLoader,
+  UniversityPage,
+} from '../features/pages/student';
+import { RouterLayout } from '../shared/navigation-scroll';
+
 function RouteLoading() {
   return (
     <main className="loading-page" role="status">
@@ -25,53 +73,7 @@ function RouteLoading() {
     </main>
   );
 }
-import {
-  LoginPage,
-  loginLoader,
-  loginAction,
-  rootLoader,
-  logoutAction,
-  ErrorPage,
-  notFoundLoader,
-} from '../features/pages/auth';
-import { AppLayout, studentLayoutLoader, driLayoutLoader } from '../features/pages/layout';
-import {
-  HomePage,
-  homeLoader,
-  UniversitiesPage,
-  universitiesLoader,
-  UniversityPage,
-  universityLoader,
-  EligibilityPage,
-  contextLoader,
-  ApplicationPage,
-  SupportPage,
-} from '../features/pages/student';
-import { NoticesPage, noticesLoader, noticesAction } from '../features/pages/notices';
-import {
-  DriHomePage,
-  driHomeLoader,
-  StudentsPage,
-  studentsLoader,
-  NewStudentPage,
-  newStudentLoader,
-  studentAction,
-} from '../features/pages/admin';
-import {
-  AgreementsPage,
-  agreementsLoader,
-  AgreementFormPage,
-  agreementFormLoader,
-  agreementAction,
-} from '../features/pages/agreements';
-import {
-  ContactPage,
-  contactLoader,
-  contactAction,
-  ContactDetailPage,
-  contactDetailLoader,
-} from '../features/pages/contact';
-import { ReportsPage, reportsLoader } from '../features/pages/reports';
+
 const criarRouter =
   import.meta.env.VITE_ROUTER_MODE === 'hash' ? createHashRouter : createBrowserRouter;
 export const router = criarRouter([

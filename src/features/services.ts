@@ -3,7 +3,7 @@ import { CHAVES, criarPersistenciaMemoria } from '../shared/persistence';
 import { contasDemo } from './fixtures';
 import { criarRepositorios } from './repositories';
 import type { Repositorios } from './repositories';
-import { ErroAplicacao } from './models';
+import { ErroAplicacao, Mensagem } from './models';
 import type {
   Aviso,
   Sessao,
@@ -435,17 +435,18 @@ export function montarServicos(
         if (!texto.trim()) throw new ErroAplicacao('errors.required');
         const item = await repos.solicitacoes.obter(id);
         if (!item) throw new ErroAplicacao('errors.notFound');
+        const mensagem: Mensagem = {
+          id: crypto.randomUUID(),
+          autor: 'dri',
+          texto: texto.trim(),
+          data: agora().toISOString(),
+        };
         const atualizado: Solicitacao = {
           ...item,
           situacao: 'respondida',
           mensagens: [
             ...item.mensagens,
-            {
-              id: crypto.randomUUID(),
-              autor: 'dri',
-              texto: texto.trim(),
-              data: agora().toISOString(),
-            },
+            mensagem,
           ],
         };
         return repos.solicitacoes.atualizar(id, atualizado);
